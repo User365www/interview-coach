@@ -17,7 +17,8 @@ class Request(models.Model):
     description = models.TextField('Описание запроса')
     status = models.CharField('Статус', choices=STATUS_CHOICES, default='waiting')
     created_at = models.DateTimeField('Дата создания', auto_now_add=True)
-    updated_at = models.DateTimeField('Дата обновления', auto_now=True)
+    updated_at = models.DateTimeField('Дата обновления', auto_now=True, null=True)
+    interview_time = models.DateTimeField('Время собеседования', null=True, blank=True)
 
     class Meta:
         verbose_name = 'Запрос на собеседование'

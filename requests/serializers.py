@@ -27,10 +27,18 @@ class RequestCreateSerializer(serializers.ModelSerializer):
 
 class RequestAcceptSerializer(serializers.ModelSerializer):
     """Принятие запроса HR-ом"""
+    interview_time = serializers.DateTimeField(required=True)
     class Meta:
         model = Request
-        fields = ('id', 'status')
+        fields = ('id', 'status', 'interview_time')
         read_only_fields = ('id',)
+
+
+class UserRequestsSerializer(serializers.ModelSerializer):
+    """Список запросов пользователя"""
+    class Meta:
+        model = Request
+        fields = ('id', 'status', 'interview_time', 'hr', 'created_at')
 
 
 class RequestSerializer(serializers.ModelSerializer):
