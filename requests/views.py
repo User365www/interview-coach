@@ -1,8 +1,6 @@
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
-from django.shortcuts import redirect
-from django.urls import reverse
 from .models import Request
 from .serializers import RequestCreateSerializer, RequestAcceptSerializer, RequestSerializer
 
@@ -32,7 +30,7 @@ class RequestAcceptView(generics.UpdateAPIView):
         instance.status = 'accepted'
         instance.hr = request.user
         instance.interview_time = request.data.get('interview_time')
-        instance.save() # Укажите ваш URL name
+        instance.save()
 
 
 class HRRequestsView(generics.ListAPIView):
