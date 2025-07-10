@@ -1,11 +1,13 @@
-from rest_framework import generics
+from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
+from rest_framework.generics import RetrieveUpdateAPIView
 from .models import Users
-from .serializers import HRSerializer, CandidateSerializer
+from .serializers import HRSerializer, CandidateSerializer, ProfileEditSerializer
+from .mixins import ProfileCheckMixin
 
 
-class CandidatesView(generics.ListAPIView):
+class CandidatesView(ProfileCheckMixin, generics.ListAPIView):
     """Список всех кандидатов, отсортированных по пройденным собеседованиям"""
     serializer_class = CandidateSerializer
 
@@ -13,7 +15,7 @@ class CandidatesView(generics.ListAPIView):
         return Users.objects.filter(type='candidate').order_by('-interview_count_passed')
 
 
-class CandidateView(generics.RetrieveAPIView):
+class CandidateView(ProfileCheckMixin, generics.RetrieveAPIView):
     """Профиль конкретного кандидата"""
     serializer_class = CandidateSerializer
     queryset = Users.objects.filter(type='candidate')
@@ -22,7 +24,7 @@ class CandidateView(generics.RetrieveAPIView):
         return get_object_or_404(self.queryset, pk=self.kwargs['id'])
 
 
-class HRsView(generics.ListAPIView):
+class HRsView(ProfileCheckMixin, generics.ListAPIView):
     """Список всех HR, отсортированных по проведенным собеседованиям"""
     serializer_class = HRSerializer
 
@@ -30,10 +32,26 @@ class HRsView(generics.ListAPIView):
         return Users.objects.filter(type='HR').order_by('-interview_count_taken')
 
 
-class HRView(generics.RetrieveAPIView):
+class HRView(ProfileCheckMixin, generics.RetrieveAPIView):
     """Профиль конкретного HR"""
     serializer_class = HRSerializer
     queryset = Users.objects.filter(type='HR')
 
     def get_object(self):
         return get_object_or_404(self.queryset, pk=self.kwargs['id'])
+
+
+class ProfileEditView(RetrieveUpdateAPIView):
+    """Редактирование профиля пользователя"""
+    serializer_class = ProfileEditSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_object(self):
+        # Возвращаем профиль текущего пользователя
+        return self.request.user.profile
+
+    def perform_update(self, serializer):
+        # Дополнительные проверки перед сохранением
+        instance = serializer.save()
+        # Можно добавить логирование изменений
+        print(f"Profile updated for user {self.request.user.username}")

@@ -3,9 +3,10 @@ from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
 from .models import Report
 from .serializers import ReportCreateSerializer, ReportAcceptSerializer, ReportSerializer
+from users.mixins import ProfileCheckMixin
 
 
-class ReportCreateView(generics.CreateAPIView):
+class ReportCreateView(ProfileCheckMixin, generics.CreateAPIView):
     """Создание репорта"""
     queryset = Report.objects.all()
     serializer_class = ReportCreateSerializer
@@ -16,7 +17,7 @@ class ReportCreateView(generics.CreateAPIView):
 
 
 
-class ReportAcceptView(generics.UpdateAPIView):
+class ReportAcceptView(ProfileCheckMixin, generics.UpdateAPIView):
     """Принятие репорта админом"""
     queryset = Report.objects.filter(status='waiting')
     serializer_class = ReportAcceptSerializer
@@ -34,7 +35,7 @@ class ReportAcceptView(generics.UpdateAPIView):
         return Response({'status': 'done'})
 
 
-class adminReportsView(generics.ListAPIView):
+class adminReportsView(ProfileCheckMixin, generics.ListAPIView):
     """Список обработанных репортов конкретного админа"""
     serializer_class = ReportSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -49,7 +50,7 @@ class adminReportsView(generics.ListAPIView):
         ).order_by('-created_at')
 
 
-class ReportsWaitingView(generics.ListAPIView):
+class ReportsWaitingView(ProfileCheckMixin, generics.ListAPIView):
     """Список ожидающих репортов"""
     serializer_class = ReportSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -64,7 +65,7 @@ class ReportsWaitingView(generics.ListAPIView):
         ).order_by('-created_at')
 
 
-class UserReportsView(generics.ListAPIView):
+class UserReportsView(ProfileCheckMixin, generics.ListAPIView):
     """Список репортов текущего пользователя"""
     serializer_class = ReportSerializer
     permission_classes = [permissions.IsAuthenticated]

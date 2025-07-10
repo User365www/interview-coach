@@ -3,9 +3,10 @@ from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
 from .models import Request
 from .serializers import RequestCreateSerializer, RequestAcceptSerializer, RequestSerializer
+from users.mixins import ProfileCheckMixin
 
 
-class RequestCreateView(generics.CreateAPIView):
+class RequestCreateView(ProfileCheckMixin, generics.CreateAPIView):
     """Создание запроса на собеседование"""
     queryset = Request.objects.all()
     serializer_class = RequestCreateSerializer
@@ -15,7 +16,7 @@ class RequestCreateView(generics.CreateAPIView):
         serializer.save(candidate=self.request.user)
 
 
-class RequestAcceptView(generics.UpdateAPIView):
+class RequestAcceptView(ProfileCheckMixin, generics.UpdateAPIView):
     """Принятие запроса HR-ом"""
     queryset = Request.objects.filter(status='waiting')
     serializer_class = RequestAcceptSerializer
@@ -33,7 +34,7 @@ class RequestAcceptView(generics.UpdateAPIView):
         instance.save()
 
 
-class HRRequestsView(generics.ListAPIView):
+class HRRequestsView(ProfileCheckMixin, generics.ListAPIView):
     """Список принятых запросов конкретного HR"""
     serializer_class = RequestSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -49,7 +50,7 @@ class HRRequestsView(generics.ListAPIView):
         ).order_by('-created_at')
 
 
-class RequestsWaitingView(generics.ListAPIView):
+class RequestsWaitingView(ProfileCheckMixin, generics.ListAPIView):
     """Список ожидающих запросов"""
     serializer_class = RequestSerializer
     permission_classes = [permissions.IsAuthenticated]
@@ -64,7 +65,7 @@ class RequestsWaitingView(generics.ListAPIView):
         ).order_by('-created_at')
 
 
-class UserRequestsView(generics.ListAPIView):
+class UserRequestsView(ProfileCheckMixin, generics.ListAPIView):
     """Список запросов текущего пользователя"""
     serializer_class = RequestSerializer
     permission_classes = [permissions.IsAuthenticated]
