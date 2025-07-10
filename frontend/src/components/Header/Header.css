@@ -1,0 +1,51 @@
+.unauth-header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 0.8rem 0; /* Уменьшил padding для более тонкого хедера */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Занимает всю ширину */
+    position: fixed; /* Фиксированное позиционирование */
+    top: 0; /* Прижат к верху */
+    left: 0;
+    z-index: 1000; /* Чтобы хедер был поверх других элементов */
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%; /* Занимает всю доступную ширину */
+    box-sizing: border-box; /* Чтобы padding не влиял на ширину */
+}
+
+.logo {
+    color: white;
+    font-size: 1.3rem; /* Немного уменьшил размер */
+    font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap; /* Чтобы текст не переносился */
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem; /* Уменьшил gap */
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem; /* Немного уменьшил размер шрифта */
+    transition: color 0.3s ease;
+    padding: 0.3rem 0; /* Добавил вертикальный padding */
+}
+
+.nav-links a:hover {
+    color: #3498db;
+}

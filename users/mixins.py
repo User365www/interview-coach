@@ -8,6 +8,9 @@ User = get_user_model()
 class ProfileCheckMixin:
     """Mixin для проверки и создания профиля пользователя"""
 
+    def __init__(self):
+        pass
+
     def dispatch(self, request, *args, **kwargs):
         # Проверяем наличие профиля
         try:

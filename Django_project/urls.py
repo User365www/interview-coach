@@ -10,7 +10,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     
     # API endpoints
-    path('api/auth/', include('users.urls')),
     path('api/candidates/', include('users.urls')),
     path('api/requests/', include('requests.urls')),
     path('api/reports/', include('reports.urls')),

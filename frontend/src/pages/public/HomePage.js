@@ -1,13 +1,26 @@
-import React, { Component } from "react";
-import LoginPage from "./LoginPage";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from 'react';
+import './HomePage.css';
+import Header from "../../components/Header/Header";
 
-export default class HomePage extends Component {
-  constructor(props) {
-    super(props);
-  }
+const HomePage = () => {
+    return (
+        <div className="home-page">
+            <div className="home-content">
+                <h1>Добро пожаловать в систему собеседований</h1>
+                <p>Платформа для взаимодействия кандидатов и HR-специалистов</p>
+                <div className="features">
+                    <div className="feature-card">
+                        <h3>Для кандидатов</h3>
+                        <p>Найдите лучших HR-специалистов и организуйте собеседования</p>
+                    </div>
+                    <div className="feature-card">
+                        <h3>Для HR</h3>
+                        <p>Найдите талантливых кандидатов и проводите собеседования</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
 
-  render() {
-    return <p>This is the home page</p>
-  }
-}
+export default HomePage;

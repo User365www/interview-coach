@@ -1,0 +1,66 @@
+.home-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрирование по горизонтали */
+}
+
+.home-content {
+    width: 100%;
+    max-width: 1200px; /* Ограничение максимальной ширины */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    margin-top: 60px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.home-content h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    width: 100%;
+    line-height: 1.6;
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1000px;
+    width: 100%;
+    flex-wrap: wrap; /* Перенос карточек на маленьких экранах */
+}
+
+.feature-card {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 300px; /* Минимальная ширина карточки */
+    max-width: 400px;
+    transition: transform 0.3s ease;
+    margin-bottom: 20px; /* Отступ между карточками при переносе */
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card h2 {
+    color: #3498db;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
