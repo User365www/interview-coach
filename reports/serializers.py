@@ -28,7 +28,6 @@ class ReportCreateSerializer(serializers.ModelSerializer):
 
 class ReportAcceptSerializer(serializers.ModelSerializer):
     """Обработка репорта админом"""
-    interview_time = serializers.DateTimeField(required=True)
     class Meta:
         model = Report
         fields = ('id', 'status')

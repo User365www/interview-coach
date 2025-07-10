@@ -29,8 +29,9 @@ class ReportAcceptView(generics.UpdateAPIView):
 
         instance = self.get_object()
         instance.status = 'done'
+        instance.admin = request.user
         instance.save()
-        return Response({'status': 'report processed'})
+        return Response({'status': 'done'})
 
 
 class adminReportsView(generics.ListAPIView):
@@ -43,6 +44,7 @@ class adminReportsView(generics.ListAPIView):
             raise PermissionDenied("Только админы могут просматривать обработанные репорты")
 
         return Report.objects.filter(
+            admin=self.request.user,
             status='done'
         ).order_by('-created_at')
 
