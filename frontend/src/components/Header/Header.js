@@ -1,18 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Header.css';
-import { useAuth } from '../../context/AuthContext';
+// import './Header.css';
+import {useAuth} from "../../context/AuthContext";
 
 const Header = () => {
-    const {name} = useAuth()
+    const {user} = useAuth()
     return (
         <header className="unauth-header">
             <div className="header-container">
                 <Link to="/" className="logo">InterviewSystem</Link>
                 <nav>
                     <ul className="nav-links">
-                        <li><Link to="/">{name}</Link></li>
-                        <li><Link to="/login">Вход</Link></li>
+                        <li><Link to="/">Главная</Link></li>
+                        {user ? (
+                            <p>Logout</p>
+                        ): (
+                            <li><Link to="/login">Вход</Link></li>
+                        )}
+                        {user && <p>Hello {user.username}</p>}
                     </ul>
                 </nav>
             </div>

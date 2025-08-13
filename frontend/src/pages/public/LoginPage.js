@@ -1,30 +1,23 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './LoginPage.css';
-// import Header from './Header';
+import { useAuth } from '../../context/AuthContext';
 
 const LoginPage = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Здесь будет логика аутентификации
-        console.log('Login attempt with:', email, password);
-    };
+    const { loginUser } = useAuth();
 
     return (
         <div className="login-page">
             <div className="login-container">
                 <h2>Вход в систему</h2>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={loginUser}>
                     <div className="form-group">
-                        <label htmlFor="email">Email</label>
+                        <label htmlFor="username">Имя пользователя</label>
                         <input
-                            type="email"
-                            id="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Введите имя пользователя"
                             required
                         />
                     </div>
@@ -33,8 +26,8 @@ const LoginPage = () => {
                         <input
                             type="password"
                             id="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            name="password"
+                            placeholder="Введите пароль"
                             required
                         />
                     </div>
