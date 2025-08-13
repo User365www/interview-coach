@@ -1,44 +1,55 @@
-// import React from 'react';
-// import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import { AuthProvider } from './context/AuthContext';
-// import Header from './components/Header/Header';
-// import HomePage from './pages/public/HomePage';
-// import LoginPage from './pages/public/LoginPage';
+// import React from "react";
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import HomePage from "./pages/public/HomePage";
+// import LoginPage from "./pages/public/LoginPage";
+// import RegisterPage from "./pages/public/RegisterPage"
+// import Header from "./components/Header/Header";
+// import ProfilePage from './pages/private/ProfilePage';
 // import CandidateListPage from './pages/private/CandidateListPage';
 // import HRListPage from './pages/private/HRListPage';
-// import ProfilePage from './pages/private/ProfilePage';
+// import ReportPage from './pages/private/ReportPage';
+// import PrivateRoute from './components/PrivateRoute';
 //
 // function App() {
 //   return (
-//     <AuthProvider>
-//       <BrowserRouter>
-//         <Header />
-//         <Routes>
-//           <Route path="/" element={<HomePage />} />
-//           <Route path="/login" element={<LoginPage />} />
-//           <Route path="/candidates" element={<CandidateListPage />} />
-//           <Route path="/hr-list" element={<HRListPage />} />
-//           <Route path="/profile" element={<ProfilePage />} />
-//         </Routes>
-//       </BrowserRouter>
-//     </AuthProvider>
+//         <Router>
+//             {/*<AuthProvider>*/}
+//               <Header />
+//               <Routes>
+//                 <Route path="/" element={<HomePage />} />
+//                 <Route path="/login" element={<LoginPage />} />
+//                 {/*<Route path="/register" element={<RegisterPage />} />*/}
+//
+//                 {/*<Route element={<PrivateRoute />}>*/}
+//                 {/*    <Route path="/profile" element={<ProfilePage />} />*/}
+//                 {/*    <Route path="/candidates" element={<CandidateListPage />} />*/}
+//                 {/*    <Route path="/hr-list" element={<HRListPage />} />*/}
+//                 {/*    <Route path="/reports" element={<ReportPage />} />*/}
+//                 {/*</Route>*/}
+//               </Routes>
+//             {/*</AuthProvider>*/}
+//         </Router>
 //   );
 // }
 //
 // export default App;
-// src/App.js
+
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/public/HomePage";
 import LoginPage from "./pages/public/LoginPage";
 import Header from "./components/Header/Header";
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
     <Router>
       <Header />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route element={<PrivateRoute />}>
+            <Route path="/" element={<HomePage />} />
+        </Route>
         <Route path="/login" element={<LoginPage />} />
       </Routes>
     </Router>

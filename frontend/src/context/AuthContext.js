@@ -1,47 +1,62 @@
-// import { createContext, useContext, useState, useEffect } from 'react';
-// import axios from 'axios';
-//
-// const AuthContext = createContext();
-//
-// export function AuthProvider({ children }) {
-//   const [auth, setAuth] = useState({
-//     isAuthenticated: false,
-//     userRole: null,
-//     isLoading: true
-//   });
-//
-//   const checkAuth = async () => {
-//     try {
-//       const response = await axios.get('api/candidates/check/');
-//       setAuth({
-//         isAuthenticated: response.data.is_authenticated,
-//         userRole: response.data.role,
-//         isLoading: false
-//       });
-//     } catch (error) {
-//       setAuth({
-//         isAuthenticated: false,
-//         userRole: null,
-//         isLoading: false
-//       });
-//     }
-//   };
-//
-//   useEffect(() => {
-//     checkAuth();
-//   }, []);
-//
-//   return (
-//     <AuthContext.Provider value={{ auth, checkAuth }}>
-//       {children}
-//     </AuthContext.Provider>
-//   );
-// }
-//
-// export const useAuth = () => {
-//   const context = useContext(AuthContext);
-//   if (!context) {
-//     throw new Error('useAuth must be used within an AuthProvider');
-//   }
-//   return context;
-// };
+import { createContext, useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from "jwt-decode";
+
+const AuthContext = createContext();
+
+export default AuthContext();
+
+export const AuthProvider = ({ children }) => {
+//   const [user, setUser] = useState(null);
+//   const [token, setToken] = useState(localStorage.getItem('access_token'));
+//   const navigate = useNavigate();
+
+  // Проверка токена при инициализации
+  // useEffect(() => {
+  //   if (token) {
+  //     const decoded = jwtDecode(token);
+  //     setUser(decoded);
+  //   }
+  // }, [token]);
+
+  // const login = async (username, password) => {
+  //   const response = await fetch('/api/token/', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ username, password })
+  //   });
+  //
+  //   if (response.ok) {
+  //     const data = await response.json();
+  //     localStorage.setItem('access_token', data.access);
+  //     localStorage.setItem('refresh_token', data.refresh);
+  //     setToken(data.access);
+  //     navigate('/profile');
+  //   } else {
+  //     throw new Error('Ошибка аутентификации');
+  //   }
+  // };
+
+  // const logout = () => {
+  //   localStorage.removeItem('access_token');
+  //   localStorage.removeItem('refresh_token');
+  //   setToken(null);
+  //   setUser(null);
+  //   navigate('/');
+  // };
+  //
+  // const getUserRole = () => {
+  //   if (!token) return null;
+  //   const decoded = jwtDecode(token);
+  //   return decoded.role; // 'candidate', 'hr' или 'admin'
+  // };
+
+  return (
+    <AuthContext.Provider value={{ 'name':'vatslav' }}>
+      {/*, login, logout, getUserRole*/}
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => useContext(AuthContext);

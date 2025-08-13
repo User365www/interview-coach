@@ -4,13 +4,26 @@ from rest_framework.decorators import api_view
 from django.shortcuts import get_object_or_404
 from rest_framework.generics import RetrieveUpdateAPIView
 from .models import Users
-from .serializers import HRSerializer, CandidateSerializer, ProfileEditSerializer
+from .serializers import HRSerializer, CandidateSerializer, ProfileEditSerializer, UserSerializer
 from .mixins import ProfileCheckMixin
 from django.views import View
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
 
+        # Add custom claims
+        token['username'] = user.username
+        # ...
 
+        return token
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
 
 class CandidatesView(ProfileCheckMixin, generics.ListAPIView):
     """Список всех кандидатов, отсортированных по пройденным собеседованиям"""
@@ -60,12 +73,8 @@ class ProfileEditView(RetrieveUpdateAPIView):
         # Можно добавить логирование изменений
         print(f"Profile updated for user {self.request.user.username}")
 
-# users/views.py
-# class AuthCheckView(ProfileCheckMixin, View):
-#     @api_view(['GET'])
-#     def dispatch(self, request, *args, **kwargs):
-#         super().dispatch(request, *args, **kwargs)  # Проверка профиля через миксин
-#         return Response({
-#             'is_authenticated': request.user.is_authenticated,
-#             'role': request.user.profile.role if request.user.is_authenticated else None
-#         })
+class RegisterView(generics.CreateAPIView):
+    '''Регистрация пользователя'''
+    queryset = Users.objects.all()
+    permission_classes = (permissions.AllowAny,)
+    serializer_class = UserSerializer
