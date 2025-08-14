@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import {useAuth} from "../../context/AuthContext";
 
 const Header = () => {
-    const {user} = useAuth()
+    const {user, logoutUser} = useAuth()
     return (
         <header className="unauth-header">
             <div className="header-container">
@@ -13,7 +13,7 @@ const Header = () => {
                     <ul className="nav-links">
                         <li><Link to="/">Главная</Link></li>
                         {user ? (
-                            <p>Logout</p>
+                            <p onClick={logoutUser}>Logout</p>
                         ): (
                             <li><Link to="/login">Вход</Link></li>
                         )}
