@@ -1,5 +1,8 @@
-from rest_framework_simplejwt.authentication import JWTAuthentication
-from rest_framework.exceptions import AuthenticationFailed
+from django.contrib.auth import get_user_model
+from django.core.exceptions import ObjectDoesNotExist
+from .models import Users  # Импортируйте вашу модель профиля
+
+User = get_user_model()
 
 
 class ProfileCheckMixin:
@@ -9,18 +12,9 @@ class ProfileCheckMixin:
         pass
 
     def dispatch(self, request, *args, **kwargs):
-        # Аутентификация через JWT
-        try:
-            jwt_auth = JWTAuthentication()
-            validated_token = jwt_auth.get_validated_token(request.auth)
-            user = jwt_auth.get_user(validated_token)
-            request.user = user
-        except Exception:
-            raise AuthenticationFailed('Неверные учетные данные')
-
         # Проверяем наличие профиля
         try:
-            request.user.profile
+            request.user.profile  # Или request.user.users, в зависимости от вашей related_name
         except (ObjectDoesNotExist, AttributeError):
             # Создаем профиль, если его нет
             Users.objects.create(user=request.user)

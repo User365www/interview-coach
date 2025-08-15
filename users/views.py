@@ -4,23 +4,12 @@ from rest_framework.decorators import api_view
 from django.shortcuts import get_object_or_404
 from rest_framework.generics import RetrieveUpdateAPIView
 from .models import Users
-from .serializers import HRSerializer, CandidateSerializer, ProfileEditSerializer, UserSerializer
+from .serializers import HRSerializer, CandidateSerializer, ProfileEditSerializer, MyTokenObtainPairSerializer
 from .mixins import ProfileCheckMixin
 from django.views import View
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-
-class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-    @classmethod
-    def get_token(cls, user):
-        token = super().get_token(user)
-
-        # Add custom claims
-        token['username'] = user.username
-        # ...
-
-        return token
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
@@ -72,9 +61,3 @@ class ProfileEditView(RetrieveUpdateAPIView):
         instance = serializer.save()
         # Можно добавить логирование изменений
         print(f"Profile updated for user {self.request.user.username}")
-
-class RegisterView(generics.CreateAPIView):
-    '''Регистрация пользователя'''
-    queryset = Users.objects.all()
-    permission_classes = (permissions.AllowAny,)
-    serializer_class = UserSerializer
