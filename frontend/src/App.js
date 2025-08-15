@@ -42,6 +42,7 @@ import LoginPage from "./pages/public/LoginPage";
 import Header from "./components/Header/Header";
 import PrivateRoute from './components/PrivateRoute';
 import {AuthProvider} from "./context/AuthContext";
+import ProfilePage from './pages/private/ProfilePage';
 
 function App() {
   return (
@@ -50,8 +51,9 @@ function App() {
           <Header />
           <Routes>
             <Route element={<PrivateRoute />}>
-                <Route path="/" element={<HomePage />} />
+                <Route path="/profile" element={<ProfilePage />} />
             </Route>
+            <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
           </Routes>
       </AuthProvider>

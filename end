@@ -1,0 +1,95 @@
+[33mcommit 225a67cfadf6b6517116043e16951d8c01d39c2c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Danila Popov <danila2025d@gmail.com>
+Date:   Fri Aug 15 17:50:47 2025 +0300
+
+    debug, authentication works right
+
+[33mcommit 831a68b1b1c28d4d8a114d433582ca4e8fc57944[m
+Author: Danila Popov <danila2025d@gmail.com>
+Date:   Thu Aug 14 12:21:38 2025 +0300
+
+    refresh and access tokens work right
+
+[33mcommit 804313459240dd806f73974aa6b8abb340bfba8f[m
+Author: Danila Popov <danila2025d@gmail.com>
+Date:   Wed Aug 13 19:19:51 2025 +0300
+
+    medium authprovider  works right
+
+[33mcommit 9db47382f6e3c1af4fe899e81eb11d7d1be10111[m
+Author: Danila Popov <danila2025d@gmail.com>
+Date:   Wed Aug 13 10:40:04 2025 +0300
+
+    minimal authprovider  works right
+
+[33mcommit 130889dba0007e788583cf2c4ad80d6d760686b0[m
+Author: Danila Popov <danila2025d@gmail.com>
+Date:   Wed Aug 13 09:46:49 2025 +0300
+
+    PrivateRoute works right
+
+[33mcommit 6de9ce3bb0c58ade392b017d3a6b60b662222690[m
+Author: Danila Popov <danila2025d@gmail.com>
+Date:   Thu Jul 10 14:40:14 2025 +0300
+
+    HomePage and LoginPage for public users
+
+[33mcommit 8c4bbf164ef581fe444d917cd4f206a16304bef9[m
+Author: Danila Popov <danila2025d@gmail.com>
+Date:   Wed Jul 9 14:56:28 2025 +0300
+
+    Added frontend,  pages: HomePage and LoginPage
+
+[33mcommit fb0f906d047698d4b07a9ef25fce6a78a3b2d63c[m
+Author: Vatslav Demeshkevich <cy4ok2006@gmail.com>
+Date:   Thu Jul 10 21:14:14 2025 +0300
+
+    added mixin
+
+[33mcommit 48f2e9161da0394673280a3eb5c188bf0b224050[m
+Author: Vatslav Demeshkevich <cy4ok2006@gmail.com>
+Date:   Thu Jul 10 16:22:06 2025 +0300
+
+    debugged reports
+
+[33mcommit 9f22adc0e12afc6f769603e29095d1952b1f36b6[m
+Author: Vatslav Demeshkevich <cy4ok2006@gmail.com>
+Date:   Wed Jul 9 16:26:05 2025 +0300
+
+    first version reports
+
+[33mcommit 2a58cc126523bf6847d0f66f50bdbed1c73e1df6[m
+Author: Vatslav Demeshkevich <cy4ok2006@gmail.com>
+Date:   Wed Jul 9 15:31:03 2025 +0300
+
+    ended request app
+
+[33mcommit 9cedb12aa8749bade058ec13113d937017ebfc23[m
+Author: Vatslav Demeshkevich <cy4ok2006@gmail.com>
+Date:   Wed Jul 9 00:13:40 2025 +0300
+
+    started requests and reports
+
+[33mcommit b9954f329906d6c77a6e0e485c6d7fecbc2dc2e0[m
+Author: Vatslav Demeshkevich <cy4ok2006@gmail.com>
+Date:   Tue Jul 8 17:04:49 2025 +0300
+
+    users app made
+
+[33mcommit 840f6ef9c59c7faa29a48690ac64a89ac0a77d38[m
+Author: Vatslav Demeshkevich <cy4ok2006@gmail.com>
+Date:   Tue Jul 8 15:19:26 2025 +0300
+
+    MVP
+
+[33mcommit 6e6f2246c817e6f8a409c9fb7d818cd876a82dd4[m
+Author: Vatslav Demeshkevich <cy4ok2006@gmail.com>
+Date:   Mon Jul 7 21:14:31 2025 +0300
+
+    начало
+
+[33mcommit 5ac7670da3952f91d4b2be42283b881eb2d79ec1[m
+Author: User365www <96082272+User365www@users.noreply.github.com>
+Date:   Tue Jul 1 13:22:04 2025 +0300
+
+    Initial commit

@@ -13,7 +13,12 @@ const Header = () => {
                     <ul className="nav-links">
                         <li><Link to="/">Главная</Link></li>
                         {user ? (
-                            <p onClick={logoutUser}>Logout</p>
+                            <>
+                                <li><Link to="/profile">Мой профиль</Link></li>
+                                <li>
+                                    <p onClick={logoutUser} style={{ cursor: 'pointer' }}>Выход</p>
+                                </li>
+                            </>
                         ): (
                             <li><Link to="/login">Вход</Link></li>
                         )}

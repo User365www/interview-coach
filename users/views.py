@@ -54,7 +54,7 @@ class ProfileEditView(RetrieveUpdateAPIView):
 
     def get_object(self):
         # Возвращаем профиль текущего пользователя
-        return self.request.user.profile
+        return Users.objects.get(user=self.request.user)
 
     def perform_update(self, serializer):
         # Дополнительные проверки перед сохранением
