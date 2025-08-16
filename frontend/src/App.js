@@ -46,6 +46,7 @@ import ProfilePage from './pages/private/ProfilePage';
 import CandidateListPage from './pages/private/CandidateListPage';
 import HRListPage from './pages/private/HRListPage';
 import ReportPage from './pages/private/ReportPage';
+import RegisterPage from "./pages/public/RegisterPage";
 
 function App() {
   return (
@@ -61,6 +62,7 @@ function App() {
             </Route>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
           </Routes>
       </AuthProvider>
     </Router>
