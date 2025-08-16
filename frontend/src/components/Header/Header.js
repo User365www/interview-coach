@@ -5,6 +5,7 @@ import {useAuth} from "../../context/AuthContext";
 
 const Header = () => {
     const {user, logoutUser} = useAuth()
+    console.log('Текущий пользователь в Header:', user);
     return (
         <header className="unauth-header">
             <div className="header-container">
@@ -15,6 +16,19 @@ const Header = () => {
                         {user ? (
                             <>
                                 <li><Link to="/profile">Мой профиль</Link></li>
+
+                                {user.type === 'HR' && (
+                                    <li><Link to="/candidate-list">Список кандидатов</Link></li>
+                                )}
+
+                                {user.type === 'candidate' && (
+                                     <li><Link to="/hr-list">Список HR</Link></li>
+                                )}
+
+                                {user.type === 'admin' && (
+                                    <li><Link to="/reports">Отчеты</Link></li>
+                                )}
+
                                 <li>
                                     <p onClick={logoutUser} style={{ cursor: 'pointer' }}>Выход</p>
                                 </li>

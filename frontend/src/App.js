@@ -43,6 +43,9 @@ import Header from "./components/Header/Header";
 import PrivateRoute from './components/PrivateRoute';
 import {AuthProvider} from "./context/AuthContext";
 import ProfilePage from './pages/private/ProfilePage';
+import CandidateListPage from './pages/private/CandidateListPage';
+import HRListPage from './pages/private/HRListPage';
+import ReportPage from './pages/private/ReportPage';
 
 function App() {
   return (
@@ -52,6 +55,9 @@ function App() {
           <Routes>
             <Route element={<PrivateRoute />}>
                 <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/candidate-list" element={<CandidateListPage />} />
+                <Route path="/hr-list" element={<HRListPage />} />
+                <Route path="/reports" element={<ReportPage />} />
             </Route>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
