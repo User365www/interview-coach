@@ -6,7 +6,7 @@ const RegisterPage = () => {
     // Используем один объект для хранения всех данных формы
     const [formData, setFormData] = useState({
         name: '',
-        type: 'candidate', // Значение по умолчанию
+        type: '',
         description: '',
         username: '',
         password: '',
@@ -86,9 +86,10 @@ const RegisterPage = () => {
                 {errors?.username && <p style={{ color: 'red' }}>{errors.username}</p>}
 
                 <label htmlFor="type">Тип пользователя:</label>
-                <select name="type" id="type" value={formData.type} onChange={handleChange}>
+                <select name="type" id="type" value={formData.type} onChange={handleChange} required>
+                    <option value="" disabled>-- Выберите тип --</option>
                     <option value="candidate">Кандидат</option>
-                    <option value="hr">Сотрудник отдела кадров (HR)</option>
+                    <option value="HR">Сотрудник отдела кадров (HR)</option>
                     {/* Регистрацию админа обычно убирают из публичной формы */}
                     {/* <option value="admin">Администратор</option> */}
                 </select>

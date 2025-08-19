@@ -16,9 +16,11 @@ const Header = () => {
                         {user ? (
                             <>
                                 <li><Link to="/profile">Мой профиль</Link></li>
+                                <li><Link to="/create-room">Создать комнату</Link></li>
 
                                 {user.type === 'HR' && (
                                     <li><Link to="/candidate-list">Список кандидатов</Link></li>
+
                                 )}
 
                                 {user.type === 'candidate' && (

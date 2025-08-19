@@ -19,5 +19,6 @@ urlpatterns = [
     path('api/users/', include('users.urls')),
     path('api/requests/', include('requests.urls')),
     path('api/reports/', include('reports.urls')),
+    path('api/videocalls/', include('videocalls.urls')),
     path('', include('frontend.urls')),
 ]

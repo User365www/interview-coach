@@ -5,18 +5,21 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
 class RegisterSerializer(serializers.ModelSerializer):
-    # Поля из связанной модели Users
+    # ---- ПОЛЯ ИЗ ПРОФИЛЯ ----
+    # Мы объявляем их здесь вручную, т.к. они не принадлежат основной модели `User`
     name = serializers.CharField(write_only=True, required=True, max_length=100)
     type = serializers.ChoiceField(choices=STATUS_CHOICES, write_only=True)
     description = serializers.CharField(write_only=True, required=False, allow_blank=True)
 
-    # Поле пароля из стандартной модели User
-    password = serializers.CharField(write_only=True, required=True, min_length=8)
-    password2 = serializers.CharField(write_only=True, required=True, label="Confirm Password")
+    # ---- ПОЛЯ ДЛЯ СОЗДАНИЯ User ----
+    password2 = serializers.CharField(style={'input_type': 'password'}, write_only=True)
 
     class Meta:
-        model = User
-        fields = ('username', 'password', 'password2', 'name', 'type', 'description')
+        model = User  # Основная модель все еще User
+        fields = ['username', 'password', 'password2', 'name', 'type', 'description']
+        extra_kwargs = {
+            'password': {'write_only': True}
+        }
 
     def validate(self, attrs):
         if attrs['password'] != attrs['password2']:
@@ -35,7 +38,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             user=user,
             name=validated_data['name'],
             type=validated_data['type'],
-            description=validated_data['description']
+            description=validated_data.get('description', '')  # .get() для безопасности
         )
         return user
 

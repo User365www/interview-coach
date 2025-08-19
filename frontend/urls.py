@@ -10,4 +10,5 @@ urlpatterns = [
     path('reports', index),
     path('candidate-list', index),
     path('hr-list', index),
+    path('create-room', index),
 ]

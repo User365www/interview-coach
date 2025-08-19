@@ -47,6 +47,9 @@ import CandidateListPage from './pages/private/CandidateListPage';
 import HRListPage from './pages/private/HRListPage';
 import ReportPage from './pages/private/ReportPage';
 import RegisterPage from "./pages/public/RegisterPage";
+import CreateRoomPage from "./pages/private/CreateRoomPage";
+import VideoCallPage from "./pages/private/VideoCallPage";
+
 
 function App() {
   return (
@@ -59,6 +62,8 @@ function App() {
                 <Route path="/candidate-list" element={<CandidateListPage />} />
                 <Route path="/hr-list" element={<HRListPage />} />
                 <Route path="/reports" element={<ReportPage />} />
+                <Route path="/create-room" element={<CreateRoomPage />} />
+                <Route path="/videocall/:roomId" element={<VideoCallPage />} />
             </Route>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
